@@ -1,0 +1,242 @@
+<!-- <p-toast> </p-toast> -->
+
+<!-- <button (click)="deleteAll()">
+  deleteAll
+</button> -->
+<div class="card1">
+  <p-card class="marquee1" >
+    <ng-marquee [stopOnHover]="true"  >
+      <b>
+        <mark class="mark1"
+            >  
+            Todays Board : 
+          </mark>
+      </b>
+          
+      
+    </ng-marquee>
+  </p-card>
+  <p-table
+    #dt
+    [value]="products"
+    [rows]="7"
+    [paginator]="true"
+    styleClass="p-datatable-striped"
+    [globalFilterFields]="[
+      'petitioner',
+      'respondent',
+      'courtName',
+      'status',
+      'nextDate'
+    ]"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedProducts"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="options1">
+        <div class="flex align-items-center justify-content-between">
+          <span style="color: black">{{
+            currentDate | date : "fullDate"
+          }}</span>
+        </div>
+        <div style="margin-left: 50px">
+          <div class="flex align-items-center justify-content-between">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm searchInputBox"
+                placeholder="Search"
+                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              />
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="flex align-items-center justify-content-between"
+          style="margin-left: 30px"
+        >
+          <span class="p-input-icon-left">
+           
+            <!-- <p-calendar
+              class="calender1"
+              [showIcon]="true"
+              [(ngModel)]="selectedDate"
+              [touchUI]="true"
+              [readonlyInput]="true"
+              [showButtonBar]="true"
+              (onSelect)="
+                dt.filter(filterDate(selectedDate), 'nextDate', 'custom')
+              "
+              [monthNavigator]="true"
+              [yearNavigator]="true"
+              [yearRange]="'2000:2050'"
+            ></p-calendar> -->
+            <div class="field col-12 md:col-4">
+              <p-calendar [(ngModel)]="date3" [showIcon]="true" inputId="icon"(onSelect)="
+              dt.filter(filterDate(selectedDate), 'nextDate', 'custom')
+            " [(ngModel)]="selectedDate" ></p-calendar>
+          </div>
+          </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> -->
+        <th pSortableColumn="name" style="min-width: 15rem; text-align: center">
+          Parties <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th
+          class="text-center"
+          pSortableColumn="price"
+          style="min-width: 15rem; text-align: center"
+        >
+          Court Details <p-sortIcon field="price"></p-sortIcon>
+        </th>
+        <th
+          pSortableColumn="category"
+          style="min-width: 15rem; text-align: center"
+        >
+          Case Details <p-sortIcon field="category"></p-sortIcon>
+        </th>
+        <th
+          pSortableColumn="rating"
+          style="min-width: 15rem; text-align: center"
+        >
+          Orders <p-sortIcon field="rating"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <!-- <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td> -->
+        <td style="text-size-adjust: 10%">
+          <b>
+            <li>{{ product.petitioner }}</li>
+            <br />
+            <span style="margin-left: 50%; color: red"> V/S</span><br /><br />
+            <li>{{ product.respondent }}</li>
+          </b>
+        </td>
+
+        <td>
+          <ul>
+            <b>Court Name :</b>
+            {{
+              product.courtName
+            }}
+          </ul>
+          <ul>
+            <b> Room No :</b>
+            {{
+              product.courtName
+            }}
+          </ul>
+          <ul>
+            <b> My Case No :</b>
+            {{
+              product.courtName
+            }}
+          </ul>
+          <ul>
+            <b>Current Case No :</b>
+            {{
+              product.courtName
+            }}
+          </ul>
+        </td>
+
+        <td>
+          <ul>
+            <b> Status : </b>
+            {{
+              product.status
+            }}
+          </ul>
+          <ul>
+            <b>Case No : </b>
+            {{
+              product.cnrNo
+            }}
+          </ul>
+          <ul>
+            <b>Judge Name :</b>
+            {{
+              product.lastCoram
+            }}
+          </ul>
+        </td>
+
+        <!-- <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
+
+        <td>
+          <button
+            style="margin-left: 40%"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="showModalDialog()"
+          ></button>
+          <br>
+          <!-- <button
+            style="margin-left: 40%; "
+            class="delete"
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="deleteProduct()"
+          ></button> -->
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ products ? products.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="Case History"
+    [(visible)]="displayModal"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="true"
+    [resizable]="true"
+  >
+    <p class="m-0">
+      <p-timeline [value]="events">
+        <ng-template pTemplate="content" let-event>
+          <small class="p-text-secondary">{{ event.date }}</small>
+        </ng-template>
+        <ng-template pTemplate="opposite" let-event>
+          {{ event.status }}
+        </ng-template>
+      </p-timeline>
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="displayModal = false"
+        label="Ok"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+
+  <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+</div>

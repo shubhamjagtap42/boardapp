@@ -1,0 +1,67 @@
+<p-table #dt [value]="products" [rows]="7" [paginator]="true" 
+[globalFilterFields]="['petitioner','respondent','email','status','editedOn','nextDate']"
+ [tableStyle]="{ 'min-width': '75rem' }" [(selection)]="selectedProducts" 
+ [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+         [showCurrentPageReport]="true">
+        
+        <ng-template pTemplate="caption" >
+            <div class="options">
+                
+                <div class="flex align-items-center justify-content-between">
+                    <span style="color:rgb(128, 125, 125)">{{ currentDate | date:'fullDate' }}</span>
+                </div>
+                <div style="margin-left: 50px;">
+                    <div class="flex align-items-center justify-content-between">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="text" pInputText class="p-inputtext-sm searchInputBox" placeholder="Search"
+                                (input)="dt.filterGlobal($any($event.target).value, 'contains')" />
+                        </span>
+                    </div>
+                </div>
+            
+            <div class="flex align-items-center justify-content-between" style="margin-left: 30px;">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-calender"></i>
+                    <p-calendar class="calender"
+                     [showIcon]="true"
+                     [(ngModel)]="selectedDate" 
+                     [touchUI]="true"
+                      [readonlyInput]="true"
+                       [showButtonBar]="true"
+                       (onSelect)="dt.filter(filterDate(selectedDate), 'nextDate', 'custom')" 
+                       [monthNavigator]="true" 
+                       [yearNavigator]="true" 
+                       [yearRange]="'2000:2050'"></p-calendar>
+                </span>
+            </div>
+        </div>
+           
+        <ng-template pTemplate="header">
+            <tr>
+                <!-- <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> -->
+                <th  pSortableColumn="name" style="min-width: 15rem; text-align: center;">
+                    Parties <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th class="text-center" pSortableColumn="price" style="min-width: 15rem; text-align: center;">
+                    Court Details <p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="category" style="min-width: 15rem; text-align: center;">
+                    Case Details <p-sortIcon field="category"></p-sortIcon>
+                </th>
+                <th pSortableColumn="rating" style="min-width: 15rem; text-align: center;">
+                    Orders <p-sortIcon field="rating"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <!-- <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td> -->
+                <td style="text-size-adjust: 10%;">
+                    <li>{{ product.petitioner }}</li><br>
+                    <span

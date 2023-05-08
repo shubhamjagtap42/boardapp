@@ -1,0 +1,72 @@
+::ng-deep th,td{
+    width: 20%;
+    margin-left: 50%;
+
+    /* margin-left: 50%; */
+    /* text-align: center;
+    padding-left: 20%; */
+}
+.widget-content {height: 143px;}
+ul,li{
+    margin-left: 15%;
+}
+
+:host ::ng-deep  {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+}
+
+p {
+    margin: 0;
+}
+
+.confirmation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host ::ng-deep .p-dialog .p-button {
+    min-width: 6rem;
+}
+.mark1{
+    background-color:#f8f9fa;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px 20px;
+}
+::ng-deep .p-card {
+    background-color: #f8f9fa;
+    height: 70px;
+    border-radius: 1px;
+}
+
+.options1{
+    display: flex;
+    /*     */
+    
+}
+.frezz{
+    border: 1px solid black;
+}
+::ng-deep .p-card .p-card-body{
+    padding:0 ;
+    height: 10px;
+}
+
+::ng-deep .p-calendar .p-inputtext{
+    width: 165px !important;
+    font-size: 0.875rem;
+    padding-left: 1.8rem;
+   height: 41px;
+}
+::ng-deep .p-button.p-button-icon-only{
+ height: 41px;
+ background: rgb(219, 218, 218);
+}
+::ng-deep .p-card .p-card-content{
+    padding: 20px 20px;
+}
+::ng-deep .delete:hover{
+    color: red;
+}
+

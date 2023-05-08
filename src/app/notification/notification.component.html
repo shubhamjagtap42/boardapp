@@ -1,0 +1,18 @@
+<p-orderList [value]="cities" scrollHeight="500px">
+    <ng-template let-cities pTemplate="item">
+        
+            <p-panel >
+                <ng-template pTemplate="header">
+                   Matter On Board
+                </ng-template>
+                <div >{{cities.petitioner}} - {{cities.courtName}} - {{cities.cnrNo}}</div>
+                <!-- <ng-template pTemplate="footer">
+                    Date : 
+                </ng-template> -->
+                
+            </p-panel>
+           
+        
+    </ng-template>
+</p-orderList>
+

@@ -1,0 +1,15 @@
+::ng-deep .p-tabmenu .p-tabmenu-nav{
+    float: right;
+    border: none;
+    margin-right: 50px;
+   
+       
+}
+.widget-content {height: 143px;}
+::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus{
+    background-color:rgb(230, 238, 238) ;
+}
+.navbar{
+    background-color:white;
+    padding: 10px 10px;
+}
